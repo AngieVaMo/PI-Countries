@@ -1,22 +1,37 @@
 const {Country, Activity} = require("../db.js");
 const { Op, Sequelize } = require("sequelize");
 
-const getAllCountries = async (req, res, next) => {
-    try {
-        let countries = await Country.findAll({
-            include: {
-                model: Activity
+let getAllCountries = async (req, res, next) => {
+    let { name } = req.query;
+
+        try {
+            if(name){
+                let countriesByName = await Country.findAll({
+                    include:{
+                        model: Activity
+                    },
+                    where:{
+                        name: {[Sequelize.Op.ilike]: `%${name}%`}
+                    }
+                })
+                res.json(countriesByName || "Country not found");
+            
+            } else{
+                let countries = await Country.findAll({
+                    include: {
+                        model: Activity
+                    }
+                });
+                res.json(countries);
+
             }
-        });
-        res.json(countries);
+        } catch (error) {
+            next(error);
+    
+        }  
+};
 
-    } catch (error) {
-        next(error);
-
-    }
-}
-
-const getCountryById = async (req, res, next) => {
+let getCountryById = async (req, res, next) => {
     const { id } = req.params;
     try {
         let countryById = await Country.findByPk(id.toUpperCase(), {
@@ -32,28 +47,8 @@ const getCountryById = async (req, res, next) => {
     }
 }
 
-const getcountryByName = async (req, res, next) => {
-    const { name } = req.query;
-
-    try {
-        let countryByName = await Country.findAll({
-            include:{
-                model: Activity
-            },
-            where:{
-                name: {[Sequelize.Op.ilike]: `%${name}%`}
-            }
-        })
-        res.json(countryByName || "Country not found");
-
-    } catch (error) {
-        next(error);
-    }
-
-};
 
 module.exports = {
     getAllCountries,
-    getCountryById,
-    getcountryByName
+    getCountryById
 }

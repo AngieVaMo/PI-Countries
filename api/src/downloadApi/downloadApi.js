@@ -1,24 +1,24 @@
-const {axios} = require("axios");
+const axios = require("axios");
 const {Country} = require("../db");
 
-const downloadApi = async () => {
+let downloadApi = async () => {
     try {
         const validation = await Country.findOne({
             where: {name: "Colombia"}
         });
 
-        const apiGet = await axios.get('https://restcountries.com/v3.1/all');
+        const apiGet = await axios.get("https://restcountries.com/v3/all");
         const apiInfo = await apiGet.data.map(c => {
           return {
             id: c.cca3,
-            nameCountry: c.name.common,
-            flag: c.flags.png,
+            name: c.name.common,
+            flag: c.flags[1],
             continent: c.region,
             capital: c.capital || ['No tiene capital'],
             subregion: c.subregion,
             area: c.area,
             population: c.population,
-            coatOfArms: c.coatOfArms.png
+            //coatOfArms: c.coatOfArms.png
           }
         })
     
@@ -26,14 +26,14 @@ const downloadApi = async () => {
           await apiInfo.map(async co => {
             Country.create({
               id: co.id,
-              nameCountry: co.nameCountry,
+              name: co.name,
               flag: co.flag,
               continent: co.continent,
               capital: co.capital,
               subregion: co.subregion,
               area: co.area,
               population: co.population,
-              coatOfArms: co.coatOfArms
+              //coatOfArms: co.coatOfArms
             })
           })
           console.log('Countries saved')
@@ -45,4 +45,6 @@ const downloadApi = async () => {
     }
 }
 
-module.exports = downloadApi;
+module.exports = {
+  downloadApi
+}

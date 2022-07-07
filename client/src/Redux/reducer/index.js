@@ -3,10 +3,10 @@ import {
   GET_COUNTRY_BY_NAME,
   GET_DETAILS,
   FILTER_BY_CONTINENT,
-  FILTER_BY_POPULATION,
+  ORDER_BY_POPULATION,
   ORDER_BY_COUNTRY,
   GET_ONLY_COUNTRIES,
-  GET_TOUR_ACTIVITY,
+  GET_ACTIVITY,
   COUNTRY_BY_ACTIVITY, 
   GET_ACTIVITY
 } from "../actions/index.js";
@@ -73,8 +73,8 @@ function reducer(state = initialState, action){
             country: filteredByContinent
            }
 
-        case FILTER_BY_POPULATION:
-          let sortedByPopulation = action.payload === "Low to High" ?
+        case ORDER_BY_POPULATION:
+          let sortedByPopulation = action.payload === "low" ?
           state.country.sort((a,b) => {
             if(a.population > b.population){
               return 1

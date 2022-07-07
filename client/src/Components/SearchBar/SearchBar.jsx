@@ -1,9 +1,10 @@
 import React from "react";
-import { usestate } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { getCountryByName } from "../../Redux/actions.js";
 
 
-export default function SearchBar(){
+export default function SearchBar({setCurrentPage}){
     const [name, setName] = useState("");
 
     const dispatch = useDispatch();
@@ -17,11 +18,9 @@ export default function SearchBar(){
         if(!name){
             alert("Escriba por favor un nombre de país válido.")
         } else{
-            dispatchEvent()
-            //setCurrentPage(1);
+            dispatch(getCountryByName(name))
+            setCurrentPage(1);
         }
-        
-
     }
 
     return (

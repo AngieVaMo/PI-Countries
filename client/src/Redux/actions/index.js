@@ -4,7 +4,7 @@ export const GET_COUNTRY_BY_NAME = 'GET_COUNTRY_BY_NAME';
 export const GET_DETAILS = 'GET_DETAILS;'
 export const ORDER_BY_COUNTRY = 'ORDER_BY_COUNTRY';
 export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT';
-export const FILTER_BY_POPULATION = 'FILTER_BY_POPULATION';
+export const ORDER_BY_POPULATION = 'ORDER_BY_POPULATION';
 export const GET_ONLY_COUNTRIES = 'GET_ONLY_COUNTRIES';
 export const GET_ACTIVITY = 'GET_ACTIVITY';
 export const GET_COUNTRY_BY_ACTIVITY = 'GET_COUNTRY_BY_ACTIVITY';
@@ -71,9 +71,9 @@ export function filterByContinent(payload){
     }
   }
   
-  export function filterByPopulation(payload){
+  export function OrderByPopulation(payload){
     return {
-      type: "FILTER_BY_POPULATION",
+      type: "ORDER_BY_POPULATION",
       payload
     }
   }

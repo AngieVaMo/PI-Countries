@@ -15,8 +15,7 @@ export default function Pages({countryPerPage, allCountries, paging}) {
                 pageNumbers.map(num => {
                     <li key={num}>
                         <a onClick={() => paging(number)}>{num}</a>
-                    </li>
-                    
+                    </li>    
                 })}
 
             </ul>

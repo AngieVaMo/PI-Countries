@@ -1,5 +1,6 @@
 const {Country, Activity} = require("../db.js");
 
+
 const postActivity = async (req, res, next) => {
     const { name, difficulty, span, season, countryName } = req.body;
     try {
@@ -15,7 +16,7 @@ const postActivity = async (req, res, next) => {
                 name : countryName
             }
         })
-        await Activity.addCountry(countriesByAct);
+        await newActivity.addCountry(countriesByAct);
     
         return res.json({message: "Activity succesfully added"});
 
@@ -24,6 +25,23 @@ const postActivity = async (req, res, next) => {
     }
 }
 
+const getActivity= async (req, res, next) => {
+    try {
+        const foundActivities= await Activity.findAll({
+            include: Country
+
+        })
+        if(foundActivities.length === 0){
+            res.send("No activities found");
+        } else{
+            res.status(200).send(foundActivities)
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     postActivity,
+    getActivity
 }

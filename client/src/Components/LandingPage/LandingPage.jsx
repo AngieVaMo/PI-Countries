@@ -9,7 +9,7 @@ export default function LandingPage(){
         <div>
             <h1>WELCOME TO COUNTRIES APP</h1>
             <Link exact to= "/home">
-                <button>Get started</button>
+                <button>Let's get started</button>
             </Link>
         </div>
     );

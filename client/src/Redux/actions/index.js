@@ -12,7 +12,7 @@ export const COUNTRY_BY_ACTIVITY = 'GET_COUNTRY_BY_ACTIVITY';
 export function getCountry(){
     return async function(dispatch) {
         try {
-            let country = await axios.get("http://localhost:3001/api/Country");
+            let country = await axios.get("http://localhost:3001/country");
 
         return dispatch({
             type: "GET_COUNTRY",
@@ -27,7 +27,7 @@ export function getCountry(){
 export function getCountryByName(name){
     return async function(dispatch) {
         try {
-            let countryByName = await axios.get(`http://localhost:3001/api/Country?name=${name}`);
+            let countryByName = await axios.get(`http://localhost:3001/country?name=${name}`);
 
             return dispatch({
               type: "GET_COUNTRY_BY_NAME",
@@ -44,7 +44,7 @@ export function getCountryByName(name){
 export function getDetails(id) {
     return async function(dispatch) {
         try {
-            let details = await axios.get(`http://localhost:3001/api/Country/${id}`)
+            let details = await axios.get(`http://localhost:3001/country/${id}`)
             
             return dispatch({
                 type: "GET_DETAILS",
@@ -81,7 +81,7 @@ export function filterByContinent(payload){
   export function getOnlyCountries(){
     return async function(dispatch) {
         try {
-            let onlyCountries = await axios.get("http://localhost:3001/api/AllCountries").data
+            let onlyCountries = await axios.get("http://localhost:3001/countriesList").data
 
             return dispatch({
                 type: "GET_ONLY_COUNTRIES",
@@ -97,7 +97,7 @@ export function filterByContinent(payload){
   export function postActivity(payload){
     return async function(dispatch){
         try {
-            let activity = await axios.post("http://localhost:3001/api/TourActivity", payload).data
+            let activity = await axios.post("http://localhost:3001/activity", payload).data
 
             return dispatch({
                 type: "GET_ACTIVITY",
@@ -113,7 +113,7 @@ export function filterByContinent(payload){
   export function getActivity(){
     return async function(dispatch){
         try {
-            let activity = await axios.get("http://localhost:3001/api/TourActivity").data;
+            let activity = await axios.get("http://localhost:3001/activity").data;
 
             return dispatch({
                 type: "GET_ACTIVITY",

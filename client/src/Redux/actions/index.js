@@ -7,7 +7,7 @@ export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT';
 export const ORDER_BY_POPULATION = 'ORDER_BY_POPULATION';
 export const GET_ONLY_COUNTRIES = 'GET_ONLY_COUNTRIES';
 export const GET_ACTIVITY = 'GET_ACTIVITY';
-export const GET_COUNTRY_BY_ACTIVITY = 'GET_COUNTRY_BY_ACTIVITY';
+export const COUNTRY_BY_ACTIVITY = 'GET_COUNTRY_BY_ACTIVITY';
 
 export function getCountry(){
     return async function(dispatch) {
@@ -71,7 +71,7 @@ export function filterByContinent(payload){
     }
   }
   
-  export function OrderByPopulation(payload){
+  export function orderByPopulation(payload){
     return {
       type: "ORDER_BY_POPULATION",
       payload
@@ -79,7 +79,7 @@ export function filterByContinent(payload){
   }
 
   export function getOnlyCountries(){
-    return function(dispatch) {
+    return async function(dispatch) {
         try {
             let onlyCountries = await axios.get("http://localhost:3001/api/AllCountries").data
 
@@ -111,7 +111,7 @@ export function filterByContinent(payload){
   }
 
   export function getActivity(){
-    return function(dispatch){
+    return async function(dispatch){
         try {
             let activity = await axios.get("http://localhost:3001/api/TourActivity").data;
 

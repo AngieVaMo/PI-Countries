@@ -12,11 +12,13 @@ export default function Pages({countryPerPage, allCountries, paging}) {
         <nav>
             <ul>
                 {pageNumbers &&
-                pageNumbers.map(num => {
-                    <li key={num}>
-                        <a onClick={() => paging(number)}>{num}</a>
+                  pageNumbers.map(num => {
+                    return( <li key={num}>
+                        <a onClick={() => paging(num)}>{num}</a>
                     </li>    
-                })}
+                    )
+                  })
+                }
 
             </ul>
         </nav>

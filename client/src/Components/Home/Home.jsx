@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 export default function Home(){
     const dispatch = useDispatch();
     const allCountries = useSelector((state) => state.country);
-    const activity = useSelector((state) => state.activity);
+    //const activity = useSelector((state) => state.activity);
     const [currentPage, setCurrentPage] = useState(1);
     const [countryPerPage] = useState(10);
     const [setInOrder] = useState('');
@@ -39,7 +39,7 @@ export default function Home(){
         dispatch(getActivity());
     }, [dispatch])
 
-    function handleClick() {
+    function handleClick(e) {
         e.preventDefault();
         dispatch(getCountry());
         window.location.reload();
@@ -48,28 +48,28 @@ export default function Home(){
     function handleFilterByContinent(e) {
         e.preventDefault();
         setCurrentPage(1);
-        dispatch(handleFilterByContinent(e.target.value));
+        dispatch(filterByContinent(e.target.value));
     }
 
     function handleSortCountry(e) {
         e.preventDefault();
         dispatch(orderByCountry(e.target.value));
         setCurrentPage(1);
-        setInOrder(`Ordenado ${ev.target.value}`);
+        setInOrder(`Ordenado ${e.target.value}`);
     }
 
     function handleSortPopulation(e) {
         e.preventDefault();
         dispatch(orderByPopulation());
         setCurrentPage(1);
-        setInOrder(`Ordenado ${ev.target.value}`)
+        setInOrder(`Ordenado ${e.target.value}`)
     }
 
     function handleCountryByActivity(e) {
         e.preventDefault();
         dispatch(countryByActivity(e.target.value))
         setCurrentPage(1);
-        setInOrder(`Ordenado ${ev.target.value}`)
+        setInOrder(`Ordenado ${e.target.value}`)
     }
 
 

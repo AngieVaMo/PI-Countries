@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, /*useNavigate*/ } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActivity, getOnlyCountries } from '../../Redux/actions/index.js';
 
@@ -21,7 +21,7 @@ function validate(input){
 
 export default function CreateActivity(){
     const dispatch = useDispatch();
-    const goBack = useNavigate();
+   // const goBack = useNavigate();
     const onlyCountries = useSelector((state) => state.onlyCountries);
     const [errors, setErrors] = useState({
         name: "activity is required",
@@ -99,7 +99,7 @@ export default function CreateActivity(){
       
           alert("Se creo la actividad");
           
-          goBack('/home')
+          //goBack('/home')
     }
 
 

@@ -29,7 +29,7 @@ export default function Details(){
                   <h4><i>Población:</i> {countryDetail.population.toLocaleString('de-DE')}</h4>
               </div>
               <div>
-                 <h2><i>Actividades:</i></h2>
+                 <h2><i>Touristic Activities:</i></h2>
                  <br/>
                  {
                     countryDetail.activity?.length > 0 ?
@@ -54,7 +54,4 @@ export default function Details(){
 
         </div>
     )
-
-
-
 }

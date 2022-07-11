@@ -24,10 +24,9 @@ let getAllCountries = async (req, res, next) => {
                         model: Activity
                     }
                 });
-                
+                res.json(countries ); 
             }
         } catch (error) {
-            res.json(countries );
             next(error);
     
         }  

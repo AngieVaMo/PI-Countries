@@ -7,6 +7,7 @@ const { countryRoutes } = require("./countryRoutes.js")
 
 const country = require("./countryRoutes.js")
 const activity = require("./activityRoutes.js");
+const countriesList = require("./countriesList.js")
 const router = Router();
 
 // Configurar los routers
@@ -14,6 +15,7 @@ const router = Router();
 //router.use(bodyParser.json())
 router.use("/country", country);
 router.use("/activity", activity);
+router.use("/countriesList", countriesList);
 
 
 module.exports = router;

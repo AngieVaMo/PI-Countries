@@ -21,8 +21,11 @@ let downloadApi = async () => {
             //coatOfArms: c.coatOfArms.png
           }
         })
+
+        await Country.bulkCreate(apiInfo);
+        res.send("Countries loaded in db succesfully")
     
-        if(!validation){
+        /*if(!validation){
           await apiInfo.map(async co => {
             Country.create({
               id: co.id,
@@ -37,7 +40,7 @@ let downloadApi = async () => {
             })
           })
           console.log('Countries saved')
-        } 
+        } */
     
     } catch (error) {
         console.log(error);

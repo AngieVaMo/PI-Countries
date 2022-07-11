@@ -1,5 +1,5 @@
 const {Country, Activity} = require("../db.js");
-const { Op, Sequelize } = require("sequelize");
+const { Op } = require("sequelize");
 
 let getAllCountries = async (req, res, next) => {
     let { name } = req.query;
@@ -7,25 +7,27 @@ let getAllCountries = async (req, res, next) => {
         try {
             if(name){
                 let countriesByName = await Country.findAll({
-                    include:{
-                        model: Activity
-                    },
                     where:{
-                        name: {[Sequelize.Op.ilike]: `%${name}%`}
-                    }
+                        name:
+                        {
+                            [Op.iLike]: `%${name}%`,
+                        }
+                    },
+                    include: Activity,
+                    
                 })
-                res.json(countriesByName || "Country not found");
-            
+                
+                res.json(countriesByName );
             } else{
                 let countries = await Country.findAll({
                     include: {
                         model: Activity
                     }
                 });
-                res.json(countries);
-
+                
             }
         } catch (error) {
+            res.json(countries );
             next(error);
     
         }  

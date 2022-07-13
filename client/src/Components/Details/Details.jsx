@@ -22,7 +22,7 @@ export default function Details(){
                 <div>
                   <img src={countryDetail.flag} alt= "Bandera"/>
                   <h2>{countryDetail.name}</h2>
-                  <h3><i>Capital</i> {countryDetail.capital[0]}</h3>
+                  <h3><i>Capital:</i> {countryDetail.capital[0]}</h3>
                   <h4><i>Code:</i> {countryDetail.id}</h4>
                   <h4><i>Subregion:</i> {countryDetail.subregion}</h4>
                   <h4><i>Area:</i> {parseInt(countryDetail.area).toLocaleString('de-DE')} Km2</h4>
@@ -51,7 +51,7 @@ export default function Details(){
             }
 
             <div>
-                <Link to="/home">❮❮ Return</Link>
+                <Link to="/home">❮❮ Back</Link>
             </div>
 
         </div>

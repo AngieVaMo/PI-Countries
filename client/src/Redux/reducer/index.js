@@ -75,24 +75,12 @@ function reducer(state = initialState, action){
            }
 
         case ORDER_BY_POPULATION:
-          let sortedByPopulation = action.payload === "low" ?
-          state.allCountries.sort((a,b) => {
-            if(a.population > b.population){
-              return 1
-            }
-            if(b.population > a.population){
-              return -1
-            }
-            return 0
+          let sortedByPopulation = action.payload === "low to high" ?
+          state.allCountries.sort((a, b) => {
+            return a.population - b.population
           }) :
           state.allCountries.sort((a,b) => {
-            if(a.population < b.population){
-              return -1
-            }
-            if(b.population < a.population){
-              return 1
-            }
-            return 0
+            return b.population - a.population
           })
           return{
             ...state,

@@ -8,6 +8,7 @@ import { postActivity, getOnlyCountries } from '../../Redux/actions/index.js';
 
 function validate(input){
     let errors = {};
+    
     if(!input.name){
       errors.name = "Activity name is required";
     }
@@ -27,7 +28,7 @@ function validate(input){
     }
 
     if(input.countries.length === 0){
-        errors.countries = "should assign at least a country to the activity";
+        errors.countries = "should add at least one country to the activity";
     }
   
     return errors;

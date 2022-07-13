@@ -21,7 +21,7 @@ export default function Home(){
     const allActivities = useSelector(state => state.activity);
     const activityName = allActivities?.map(a => a.name);
     const [currentPage, setCurrentPage] = useState(1);
-    const [countryPerPage, setCountryPerPage] = useState(9);
+    const [countryPerPage, setCountryPerPage] = useState(10);
     const [,setInOrder] = useState('');
 
 
@@ -34,12 +34,12 @@ export default function Home(){
 
     function paging(pageNum){
         setCurrentPage(pageNum);
-        if(pageNum === 1){
+        /*if(pageNum === 1){
             setCountryPerPage(9);
             
         } else{
             setCountryPerPage(10);
-        }
+        }*/
     }
 
     useEffect(() => {
@@ -93,11 +93,11 @@ export default function Home(){
 
             <div >
                 <div >
-                    <h3>Busqueda por:</h3>
+                    <h3>Search by:</h3>
                 </div>
                 <div >
                     <select onChange = {e => handleSortCountry(e)}>
-                        <option>Alphabet order</option>
+                        <option>Sort by alphabet</option>
                         <option value= "asc">A-Z</option>
                         <option value= "desc">Z-A</option>
                     </select>
@@ -105,15 +105,15 @@ export default function Home(){
 
                 <div >
                     <select onChange={e => handleSortPopulation(e)}>
-                     <option>Population</option>
-                     <option value='low'>smallest to largest population</option>
-                     <option value='high'>largest to smallest population</option>
+                     <option>Sort by population</option>
+                     <option value='low to high'>smallest to largest population</option>
+                     <option value='high to low'>largest to smallest population</option>
                     </select>
                 </div>
 
                 <div >
                     <select onChange={e => handleFilterByContinent(e)}>
-                     <option value='All'>Continent</option>
+                     <option value='All'>Filter by continent</option>
                      <option value='Africa'>Africa</option>
                      <option value='Americas'>America</option>
                      <option value='Antarctic'>Antartic</option>
@@ -125,12 +125,12 @@ export default function Home(){
 
                 <div >
                  {
-                 activityName?.length === 0 ?
+                 activityName.length === 0 ?
                  <Link to="/createActivity">
-                    <p>Create activities</p>
+                    <p>No activities created</p>
                  </Link>
                   : <select onChange={e => handleCountryByActivity(e)}>
-                    <option value='All'>Activities</option>
+                    <option value='All'>Filter by activities</option>
                   {activityName?.map(e => {
                     return (
                       <option key={e} value={e}>{e}</option>
@@ -142,12 +142,12 @@ export default function Home(){
 
                 <div>
                  <Link to="/createActivity">
-                    <p>Create an activity</p>
+                    <p>Create activity</p>
                  </Link>
                 </div>
 
                 <div >
-                    <button onClick={e => handleClick(e)}>Limpiar filtro</button>
+                    <button onClick={e => handleClick(e)}>Clear filters</button>
                 </div>
                 
             </div>

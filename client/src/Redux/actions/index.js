@@ -84,7 +84,6 @@ export function filterByContinent(payload){
     return async function(dispatch) {
         try {
             let onlyCountries = await axios.get("http://localhost:3001/countriesList")
-            console.log(onlyCountries, "COUNTRYNAME")
 
             return dispatch({
                 type: "GET_ONLY_COUNTRIES",

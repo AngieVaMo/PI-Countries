@@ -70,7 +70,7 @@ export default function Home(){
 
     function handleSortPopulation(e) {
         e.preventDefault();
-        dispatch(orderByPopulation());
+        dispatch(orderByPopulation(e.target.value));
         setCurrentPage(1);
         setInOrder(`Ordered by population ${e.target.value}`)
     }
@@ -102,18 +102,6 @@ export default function Home(){
                         <option value= "desc">Z-A</option>
                     </select>
                 </div>
-                <div >
-                    <label>Continent:</label>
-                    <select onChange={e => handleFilterByContinent(e)}>
-                     <option value='All'>All</option>
-                     <option value='Africa'>Africa</option>
-                     <option value='Americas'>America</option>
-                     <option value='Antarctic'>Antartic</option>
-                     <option value='Asia'>Asia</option>
-                     <option value='Europe'>Europe</option>
-                     <option value='Oceania'>Oceania</option>    
-                    </select>
-                </div>
 
                 <div >
                     <select onChange={e => handleSortPopulation(e)}>
@@ -124,13 +112,25 @@ export default function Home(){
                 </div>
 
                 <div >
-                <label>Activities: </label>
+                    <select onChange={e => handleFilterByContinent(e)}>
+                     <option value='All'>Continent</option>
+                     <option value='Africa'>Africa</option>
+                     <option value='Americas'>America</option>
+                     <option value='Antarctic'>Antartic</option>
+                     <option value='Asia'>Asia</option>
+                     <option value='Europe'>Europe</option>
+                     <option value='Oceania'>Oceania</option>    
+                    </select>
+                </div>
+
+                <div >
                  {
                  activityName?.length === 0 ?
                  <Link to="/createActivity">
                     <p>Create activities</p>
                  </Link>
                   : <select onChange={e => handleCountryByActivity(e)}>
+                    <option value='All'>Activities</option>
                   {activityName?.map(e => {
                     return (
                       <option key={e} value={e}>{e}</option>
@@ -140,9 +140,16 @@ export default function Home(){
                 }
                 </div>
 
+                <div>
+                 <Link to="/createActivity">
+                    <p>Create an activity</p>
+                 </Link>
+                </div>
+
                 <div >
                     <button onClick={e => handleClick(e)}>Limpiar filtro</button>
                 </div>
+                
             </div>
 
             <div >
@@ -156,7 +163,6 @@ export default function Home(){
                             id={c.id} 
                             key={c.id}/>
                         )
-
                     })
                 
                 }

@@ -32,17 +32,18 @@ export default function Details(){
                  <h2><i>Touristic Activities:</i></h2>
                  <br/>
                  {
-                    countryDetail.activity?.length > 0 ?
-                    countryDetail.activity.map(act => (
+                    countryDetail.Activities?.length === 0 ?
+                    <h2>¡It has no activities!</h2> :
+                    countryDetail.Activities?.map(act => (
                         <p key={act.id}>
                           <li>Activity: {act.name}</li>
-                          <li>Season: {act.season}</li>
-                          <li>Span: {act.span}</li>
                           <li>Difficulty: {act.difficulty}</li>
+                          <li>Span: {act.span}</li>
+                          <li>Season: {act.season}</li>
                           <br/>
                         </p>
-                    )) :
-                    <h2>¡It has no activities!</h2>
+                    )) 
+                    
                  }
               </div>
               </div> 

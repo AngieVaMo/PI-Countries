@@ -18,7 +18,8 @@ export default function SearchBar(){
     function handleSubmit(e){
         e.preventDefault();
         if(!name){
-            alert("Escriba por favor un nombre de país válido.")
+            alert("Please, type a country name")
+
         } else{
             dispatch(getCountryByName(name));
             

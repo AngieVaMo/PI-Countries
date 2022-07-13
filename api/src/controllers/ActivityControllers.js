@@ -2,7 +2,7 @@ const {Country, Activity} = require("../db.js");
 
 
 const postActivity = async (req, res, next) => {
-    const { name, difficulty, span, season, countryName } = req.body;
+    const { name, difficulty, span, season, countries } = req.body;
     try {
         let newActivity = await Activity.create({
             name, 
@@ -13,7 +13,7 @@ const postActivity = async (req, res, next) => {
     
         let countriesByAct = await Country.findAll({
             where: {
-                name : countryName
+                name : countries
             }
         })
         await newActivity.addCountry(countriesByAct);

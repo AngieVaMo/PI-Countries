@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link, /*useNavigate*/ } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActivity, getOnlyCountries } from '../../Redux/actions/index.js';
 
@@ -11,9 +11,24 @@ function validate(input){
     if(!input.name){
       errors.name = "Activity name is required";
     }
+
+    if(!input.difficulty){
+        errors.difficulty = "Difficulty is required";
+    }
+
     if(!input.span){
       errors.span = "Activity span is required";
-      }
+    } else if(input.span.length !== 4){
+        errors.span = "should have 3 characters (2 hr)";
+    }
+
+    if(!input.season){
+        errors.season = "Season is required";
+    }
+
+    if(input.countries.length === 0){
+        errors.countries = "should assign at least a country to the activity";
+    }
   
     return errors;
 }
@@ -21,11 +36,14 @@ function validate(input){
 
 export default function CreateActivity(){
     const dispatch = useDispatch();
-   // const goBack = useNavigate();
+    const goBack = useNavigate();
     const onlyCountries = useSelector((state) => state.onlyCountries);
     const [errors, setErrors] = useState({
-        name: "activity is required",
-        span: ""
+        name: "",
+        difficulty: "",
+        span: "",
+        season: "",
+        countries: ""
     });
     const [input, setInput] = useState({
         name:"",
@@ -87,19 +105,23 @@ export default function CreateActivity(){
 
     function handleSubmit(e){
         e.preventDefault();
-        dispatch(postActivity(input))
+        setErrors(validate(input))
+        if(Object.keys(errors).length === 0){
+            dispatch(postActivity(e))
+            alert("Activity created");
+            setInput({
+                nameActivity: "",
+                difficulty: "",
+                span: "",
+                season: "",
+                country: []
+              })
+              goBack('/home')
 
-        setInput({
-            nameActivity: "",
-            difficulty: "",
-            span: "",
-            season: "",
-            country: []
-          })
-      
-          alert("Se creo la actividad");
-          
-          //goBack('/home')
+        } else{
+            alert("There are some data missing");
+
+        }       
     }
 
 
@@ -152,16 +174,17 @@ export default function CreateActivity(){
               name= "difficulty"
               onChange={(e)=> handleChange(e)}
               />5|
+              {errors.difficulty && (<p>{errors.difficulty}</p>)}
               </div>
 
               <div>
-              <label>Duración:</label>
+              <label>Span:</label>
               <input 
               type= "text"
               value= {input.span}
               name= "span"
               onChange={(e)=> handleChange(e)}
-              placeholder="Tiempo en horas"
+              placeholder="Tiempo en horas. Ej: 2 hr"
               />
               {errors.span && (<p>{errors.span}</p>)}
               </div>
@@ -169,38 +192,46 @@ export default function CreateActivity(){
               <div>
               <label>Season:</label>
               <select onChange={(e)=> handleCheck(e)}>
-              <option disable hidden>Season</option>
+              <option disabled hidden>Season</option>
               <option value= "summer">Summer</option>
               <option value= "autumn">Autumn</option>
               <option value= "winter">Winter</option>
               <option value= "spring">Spring</option>
               </select>
+              {errors.season && (<p>{errors.season}</p>)}
               </div>
 
               <div>
-              <label>Countries:  
+              <label>Countries: </label> 
               <select onChange={(e)=> handleSelect(e)}>
-              <option disable hidden>Countries</option>
-              {onlyCountries.map((c)=> (
-                <option key={c.name} value={c.name}>{c.name}</option>
-              ))}
+              {/*<option disabled hidden>Countries</option>*/}
+              {onlyCountries? onlyCountries.map(c => {
+                return (
+                    <option key={c.name} value={c.name}>{c.name}</option>
+                )
+              }): "No hay paises para seleccionar"
+            }
               </select>
-              </label>
+              {errors.countries && (<p>{errors.countries}</p>)}
               </div>
 
-            {input.country.map(el => 
-            <div key={el}>
-            <h4>{el}</h4>
-            <button onClick={()=> handleDelete(el)}>x</button>
-            </div>)}
+            {input.country? input.country.map(el => {
+                return (
+                    <div key={el}>
+                    <h4>{el}</h4>
+                    <button onClick={()=> handleDelete(el)}>x</button>
+                    </div>
+                )
+              }):"No hay paises a eliminar"
+            }
 
               <div>
-              <button type='submit' disabled={errors.name || errors.span ? true : false}>Create</button>
+              <button type='submit' disabled={errors.name || errors.difficulty || errors.span || errors.season || errors.countries ? true : false}>Create</button>
               </div>
 
             </form>
 
-            <div><Link to='/home'>❮❮ Regresar</Link></div>
+            <div><Link to='/home'>❮❮ Back</Link></div>
 
         </div>        
     );

@@ -2,12 +2,12 @@ import {
   GET_COUNTRY,
   GET_COUNTRY_BY_NAME,
   GET_DETAILS,
+  ORDER_BY_COUNTRY,
   FILTER_BY_CONTINENT,
   ORDER_BY_POPULATION,
-  ORDER_BY_COUNTRY,
   GET_ONLY_COUNTRIES,
-  COUNTRY_BY_ACTIVITY, 
-  GET_ACTIVITY
+  GET_ACTIVITY,
+  COUNTRY_BY_ACTIVITY
 } from "../actions/index.js";
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
     allCountries: [],
     details: {},
     onlyCountries: [],
-    activity: []
+    activity: [],
 }
 
 function reducer(state = initialState, action){
@@ -24,13 +24,15 @@ function reducer(state = initialState, action){
             return{
                 ...state,
                 country: action.payload,
-                allCountries: action.payload
+                allCountries: action.payload             
             };
         
         case GET_COUNTRY_BY_NAME:
+          console.log(action.payload, "COUNTRYBYNAME")
+
             return{
                 ...state,
-                country: action.payload
+                allCountries: action.payload 
             };
 
         case GET_DETAILS:
@@ -42,19 +44,19 @@ function reducer(state = initialState, action){
         case ORDER_BY_COUNTRY:
             let countriesSorted = action.payload === 'asc' ?
             state.country.sort(function (a,b) {
-              if (a.nameCountry > b.nameCountry){
+              if (a.name > b.name){
                 return 1;
               }
-              if (b.nameCountry > a.nameCountry){
+              if (b.name > a.name){
                 return -1;
               }
               return 0;
             }) :
             state.country.sort(function (a,b) {
-              if (a.nameCountry > b.nameCountry){
+              if (a.name > b.name){
                 return -1;
               }
-              if (b.nameCountry > a.nameCountry){
+              if (b.name > a.name){
                 return 1;
               }
               return 0;
@@ -69,7 +71,7 @@ function reducer(state = initialState, action){
            let filteredByContinent = action.payload === "All" ? CountriesByContinent : CountriesByContinent.filter(c => c.continent === action.payload);
            return{
             ...state,
-            country: filteredByContinent
+            allCountries: filteredByContinent
            }
 
         case ORDER_BY_POPULATION:
@@ -78,16 +80,16 @@ function reducer(state = initialState, action){
             if(a.population > b.population){
               return 1
             }
-            if(a.population < b.population){
+            if(b.population > a.population){
               return -1
             }
             return 0
           }) :
           state.country.sort((a,b) => {
-            if(a.population > b.population){
+            if(a.population < b.population){
               return -1
             }
-            if(a.population < b.population){
+            if(b.population < a.population){
               return 1
             }
             return 0
@@ -111,7 +113,7 @@ function reducer(state = initialState, action){
 
         case COUNTRY_BY_ACTIVITY:
           let country = state.country;
-          let filteredByActivity = action.payload === "All" ? country : country.filter(c => c.activity.find(a => a.nameActivity === action.payload));
+          let filteredByActivity = action.payload === "All" ? country : country.filter(c => c.activity.find(a => a.name === action.payload));
           return{
             ...state,
             country: filteredByActivity

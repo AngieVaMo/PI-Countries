@@ -4,13 +4,14 @@ import { useDispatch } from "react-redux";
 import { getCountryByName } from "../../Redux/actions/index.js";
 
 
-export default function SearchBar({setCurrentPage}){
+export default function SearchBar(){
     const dispatch = useDispatch();
     const [name, setName] = useState("");
 
 
 
     function handleChange(e){
+        e.preventDefault();
         setName(e.target.value)
     }
 
@@ -19,25 +20,23 @@ export default function SearchBar({setCurrentPage}){
         if(!name){
             alert("Escriba por favor un nombre de país válido.")
         } else{
-            dispatch(getCountryByName(name))
-            setCurrentPage(1);
+            dispatch(getCountryByName(name));
+            
         }
     }
 
     return (
         <div>
-            <form onSubmit={(e)=>handleSubmit(e)}>
+        
                 <input 
-                type={"text"} 
+                type="text" 
                 placeholder="Country name..." 
-                value={name} 
                 onChange={(e)=>handleChange(e)}
                 />
-                <input 
-                type={"submit"} 
-                value={"Search"}
-                />
-            </form>
+                <button type="submit" onClick={(e)=>handleSubmit(e)}>Search</button> 
+                
+                
+            
         </div>
     )
 }

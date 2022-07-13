@@ -1,4 +1,5 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import{
     getCountry,
@@ -10,17 +11,18 @@ import{
 } from "../../Redux/actions/index.js";
 import Card from "../Card/Card.jsx";
 import Pages from "../Pages/Pages.jsx";
-import SearchBar from "../SearchBar/SearchBar"
+import SearchBar from "../SearchBar/SearchBar.jsx"
 import { Link } from "react-router-dom";
 
 
 export default function Home(){
     const dispatch = useDispatch();
-    const allCountries = useSelector((state) => state.country);
-    //const activity = useSelector((state) => state.activity);
+    const allCountries = useSelector(state => state.allCountries);
+    const allActivities = useSelector(state => state.activity);
+    const activityName = allActivities?.map(a => a.name);
     const [currentPage, setCurrentPage] = useState(1);
-    const [countryPerPage] = useState(10);
-    const [setInOrder] = useState('');
+    const [countryPerPage, setCountryPerPage] = useState(9);
+    const [,setInOrder] = useState('');
 
 
 
@@ -32,6 +34,12 @@ export default function Home(){
 
     function paging(pageNum){
         setCurrentPage(pageNum);
+        if(pageNum === 1){
+            setCountryPerPage(9);
+            
+        } else{
+            setCountryPerPage(10);
+        }
     }
 
     useEffect(() => {
@@ -42,96 +50,113 @@ export default function Home(){
     function handleClick(e) {
         e.preventDefault();
         dispatch(getCountry());
+        dispatch(getActivity())
         window.location.reload();
     }
 
     function handleFilterByContinent(e) {
         e.preventDefault();
-        setCurrentPage(1);
         dispatch(filterByContinent(e.target.value));
+        setCurrentPage(1);
+        
     }
 
     function handleSortCountry(e) {
         e.preventDefault();
         dispatch(orderByCountry(e.target.value));
         setCurrentPage(1);
-        setInOrder(`Ordenado ${e.target.value}`);
+        setInOrder(`Ordered by the alphabeth ${e.target.value}`);
     }
 
     function handleSortPopulation(e) {
         e.preventDefault();
         dispatch(orderByPopulation());
         setCurrentPage(1);
-        setInOrder(`Ordenado ${e.target.value}`)
+        setInOrder(`Ordered by population ${e.target.value}`)
     }
 
     function handleCountryByActivity(e) {
         e.preventDefault();
         dispatch(countryByActivity(e.target.value))
         setCurrentPage(1);
-        setInOrder(`Ordenado ${e.target.value}`)
+        setInOrder(`Ordered by activity ${e.target.value}`)
     }
 
 
 
     return(
         <div>
-            <SearchBar setCurrentPage = {setCurrentPage} />
+            <div>
+              <SearchBar/>
+            </div>
+            
 
-            <div todos los filtros>
-                <div TITULO>
+            <div >
+                <div >
                     <h3>Busqueda por:</h3>
                 </div>
-                <div ORDEN ALFABETICO>
+                <div >
                     <select onChange = {e => handleSortCountry(e)}>
                         <option>Alphabet order</option>
                         <option value= "asc">A-Z</option>
                         <option value= "desc">Z-A</option>
                     </select>
                 </div>
-                <div CONTINENTE>
+                <div >
+                    <label>Continent:</label>
                     <select onChange={e => handleFilterByContinent(e)}>
-                     <option>Continent</option>
-                     <option value='Africa'>África</option>
-                     <option value='Americas'>América</option>
-                     <option value='Antarctic'>Antártica</option>
+                     <option value='All'>All</option>
+                     <option value='Africa'>Africa</option>
+                     <option value='Americas'>America</option>
+                     <option value='Antarctic'>Antartic</option>
                      <option value='Asia'>Asia</option>
-                     <option value='Europe'>Europa</option>
-                     <option value='Oceania'>Oceanía</option>    
+                     <option value='Europe'>Europe</option>
+                     <option value='Oceania'>Oceania</option>    
                     </select>
                 </div>
-                <div ORDEN DE POBLACION>
+
+                <div >
                     <select onChange={e => handleSortPopulation(e)}>
                      <option>Population</option>
                      <option value='low'>smallest to largest population</option>
                      <option value='high'>largest to smallest population</option>
                     </select>
                 </div>
-                <div PAISESxACTIVIDAD>
-                    <select onChange={e => handleCountryByActivity(e)}>
-                        <option value={"All"}>Actividad</option>
 
-                        <Link to="/createActivity">
-                            <p>No hay actividades disponibles. ¿Crear?</p>
-                        </Link>
-                        {(act => <option key={act} value={act}>{act}</option>)}
-                    </select>
+                <div >
+                <label>Activities: </label>
+                 {
+                 activityName?.length === 0 ?
+                 <Link to="/createActivity">
+                    <p>Create activities</p>
+                 </Link>
+                  : <select onChange={e => handleCountryByActivity(e)}>
+                  {activityName?.map(e => {
+                    return (
+                      <option key={e} value={e}>{e}</option>
+                    )
+                  })}
+                  </select>
+                }
                 </div>
-                <div LIMPIAR FILTRO>
+
+                <div >
                     <button onClick={e => handleClick(e)}>Limpiar filtro</button>
                 </div>
             </div>
 
-            <div CARDS>
+            <div >
                 {
                     CountriesOnCurrentPage?.map(c => {
                         return(
                             <Card 
                             name={c.name} 
                             continent={c.continent} 
-                            flag={c.flag} id={c.id} 
+                            flag={c.flag} 
+                            id={c.id} 
                             key={c.id}/>
                         )
+
                     })
                 
                 }

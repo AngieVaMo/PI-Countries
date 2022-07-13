@@ -13,9 +13,9 @@ export default function Pages({countryPerPage, allCountries, paging}) {
             <ul>
                 {pageNumbers &&
                   pageNumbers.map(num => {
-                    return( <li key={num}>
-                        <a onClick={() => paging(num)}>{num}</a>
-                    </li>    
+                    return( <button 
+                    key={num} onClick={() => paging(num)}>{num}
+                    </button>    
                     )
                   })
                 }

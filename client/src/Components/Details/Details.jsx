@@ -15,18 +15,18 @@ export default function Details(){
     },[])
 
     return(
-        <div DETALLES>
+        <div>
             {
-              countryDetail.hasOwnProperty("name") ?
+              countryDetail?.hasOwnProperty("name") &&
               <div>
                 <div>
                   <img src={countryDetail.flag} alt= "Bandera"/>
                   <h2>{countryDetail.name}</h2>
                   <h3><i>Capital</i> {countryDetail.capital[0]}</h3>
-                  <h4><i>Codigo:</i> {countryDetail.id}</h4>
-                  <h4><i>Subregión:</i> {countryDetail.subregion}</h4>
-                  <h4><i>Área:</i> {parseInt(countryDetail.area).toLocaleString('de-DE')} Km2</h4>
-                  <h4><i>Población:</i> {countryDetail.population.toLocaleString('de-DE')}</h4>
+                  <h4><i>Code:</i> {countryDetail.id}</h4>
+                  <h4><i>Subregion:</i> {countryDetail.subregion}</h4>
+                  <h4><i>Area:</i> {parseInt(countryDetail.area).toLocaleString('de-DE')} Km2</h4>
+                  <h4><i>Population:</i> {countryDetail.population.toLocaleString('de-DE')}</h4>
               </div>
               <div>
                  <h2><i>Touristic Activities:</i></h2>
@@ -37,7 +37,7 @@ export default function Details(){
                         <p key={act.id}>
                           <li>Activity: {act.name}</li>
                           <li>Season: {act.season}</li>
-                          <li>Duration: {act.span}</li>
+                          <li>Span: {act.span}</li>
                           <li>Difficulty: {act.difficulty}</li>
                           <br/>
                         </p>
@@ -45,7 +45,8 @@ export default function Details(){
                     <h2>¡It has no activities!</h2>
                  }
               </div>
-              </div> : <p>Loading...</p>
+              </div> 
+              //: <p>Details not found</p>
             }
 
             <div>

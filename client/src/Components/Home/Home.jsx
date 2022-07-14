@@ -13,15 +13,18 @@ import Card from "../Card/Card.jsx";
 import Pages from "../Pages/Pages.jsx";
 import SearchBar from "../SearchBar/SearchBar.jsx"
 import { Link } from "react-router-dom";
+import "./Home.css";
+
 
 
 export default function Home(){
     const dispatch = useDispatch();
     const allCountries = useSelector(state => state.allCountries);
     const allActivities = useSelector(state => state.activity);
-    const activityName = allActivities?.map(a => a.name);
+    console.log(allActivities, "ACTIVIDADESHOME")
+    const activityName = Array.isArray(allActivities) ? allActivities.map(a => a.name): []
     const [currentPage, setCurrentPage] = useState(1);
-    const [countryPerPage, setCountryPerPage] = useState(10);
+    const [countryPerPage] = useState(10);
     const [,setInOrder] = useState('');
 
 
@@ -85,17 +88,16 @@ export default function Home(){
 
 
     return(
-        <div>
+        <div className="container">
             <div>
               <SearchBar/>
             </div>
-            
 
-            <div >
+            <div className="allfilters">
                 <div >
-                    <h3>Search by:</h3>
+                    <h3 className="searchby">Search by:</h3>
                 </div>
-                <div >
+                <div>
                     <select onChange = {e => handleSortCountry(e)}>
                         <option>Sort by alphabet</option>
                         <option value= "asc">A-Z</option>
@@ -103,7 +105,7 @@ export default function Home(){
                     </select>
                 </div>
 
-                <div >
+                <div className="filters">
                     <select onChange={e => handleSortPopulation(e)}>
                      <option>Sort by population</option>
                      <option value='low to high'>smallest to largest population</option>
@@ -111,7 +113,7 @@ export default function Home(){
                     </select>
                 </div>
 
-                <div >
+                <div className="filters">
                     <select onChange={e => handleFilterByContinent(e)}>
                      <option value='All'>Filter by continent</option>
                      <option value='Africa'>Africa</option>
@@ -123,12 +125,10 @@ export default function Home(){
                     </select>
                 </div>
 
-                <div >
+                <div className="filters">
                  {
                  activityName.length === 0 ?
-                 <Link to="/createActivity">
                     <p>No activities created</p>
-                 </Link>
                   : <select onChange={e => handleCountryByActivity(e)}>
                     <option value='All'>Filter by activities</option>
                   {activityName?.map(e => {
@@ -140,19 +140,19 @@ export default function Home(){
                 }
                 </div>
 
-                <div>
-                 <Link to="/createActivity">
-                    <p>Create activity</p>
-                 </Link>
-                </div>
-
                 <div >
-                    <button onClick={e => handleClick(e)}>Clear filters</button>
+                    <button className="clearfilters" onClick={e => handleClick(e)}>Clear filters</button>
                 </div>
                 
             </div>
 
-            <div >
+            <div className="createact">
+                <Link className="createact" to="/createActivity">
+                 <p>Create activity</p>
+                </Link>
+            </div>
+
+            <div className="cards">
                 {
                     CountriesOnCurrentPage?.map(c => {
                         return(
@@ -173,6 +173,7 @@ export default function Home(){
             allCountries={allCountries.length}
             paging={paging}
             />
+            
         </div>
     )
 }

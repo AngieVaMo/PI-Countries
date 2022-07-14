@@ -1,0 +1,25 @@
+.searchBar{
+    width: 100%;
+    display:flex;
+    justify-content: end;
+}
+
+.input{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+    border-radius: 8%;
+}
+
+.button{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+    background-color: #0d0000;
+    color: #D96704;
+    border-radius: 8%;   
+}
+
+.button:hover{
+    padding: 10px;
+    box-shadow: 5px 5px 5px #D96704;
+    opacity: 0.8;
+}

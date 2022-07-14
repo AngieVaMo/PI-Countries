@@ -1,4 +1,5 @@
 import React from "react";
+import "./Pages.css";
 
 
 export default function Pages({countryPerPage, allCountries, paging}) {
@@ -9,11 +10,11 @@ export default function Pages({countryPerPage, allCountries, paging}) {
     }
 
     return(
-        <nav>
-            <ul>
+        <nav >
+            <ul className="ul">
                 {pageNumbers &&
                   pageNumbers.map(num => {
-                    return( <button 
+                    return( <button className="pagingbutton"
                     key={num} onClick={() => paging(num)}>{num}
                     </button>    
                     )

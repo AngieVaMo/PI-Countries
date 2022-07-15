@@ -1,6 +1,11 @@
 .landing{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    /*background-image: url(../../Images/PImg20.jpg);*/
+    /*background-image: url(../../Images/PImg2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;*/
     
     display: flex;
     flex-direction: column;
@@ -11,7 +16,7 @@
 
 .landing::after{
   content: "";
-  background: url(../../Images/PImg20.jpg);
+  background: url(../../Images/PImg23.jpeg);
   opacity: 0.98;
   top: 0;
   left: 0;

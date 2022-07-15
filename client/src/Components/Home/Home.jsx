@@ -88,10 +88,13 @@ export default function Home(){
 
 
     return(
-        <div className="container">
+        <div>
             <div>
               <SearchBar/>
             </div>
+
+            
+        <div className="container">
 
             <div className="allfilters">
                 <div >
@@ -128,7 +131,7 @@ export default function Home(){
                 <div className="filters">
                  {
                  activityName.length === 0 ?
-                    <p>No activities created</p>
+                    <p className="p">No activities created</p>
                   : <select onChange={e => handleCountryByActivity(e)}>
                     <option value='All'>Filter by activities</option>
                   {activityName?.map(e => {
@@ -174,6 +177,7 @@ export default function Home(){
             paging={paging}
             />
             
+        </div>
         </div>
     )
 }

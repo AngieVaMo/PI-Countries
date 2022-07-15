@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postActivity, getOnlyCountries } from '../../Redux/actions/index.js';
-
+import "./CreateActivity.css";
 
 
 function validate(input){
@@ -28,7 +28,7 @@ function validate(input){
     }
 
     if(input.countries.length === 0){
-        errors.countries = "should add at least one country to the activity";
+        errors.countries = "Should add at least one country to the activity";
     }
   
     return errors;
@@ -130,12 +130,14 @@ export default function CreateActivity(){
     }
 
     return (
-        <div>
-            <h1>Create Touristic Activity</h1>
+        <div className='container'>
+            <h2>Create Touristic Activity</h2>
+
+          <div className='formcontainer'>
 
             <form onSubmit={e => handleSubmit(e)}>
 
-              <div>
+              <div className='fields'>
                <label>Activity name: </label>
                <input 
                type= "text"
@@ -143,10 +145,10 @@ export default function CreateActivity(){
                name= "name"
                onChange={(e)=> handleChange(e)} 
                />
-               {errors.name && (<p>{errors.name}</p>)}
+               {errors.name && (<p className='p'>{errors.name}</p>)}
               </div>
 
-              <div>
+              <div className='fields'>
               <label>Difficulty: </label>
               |<input 
               type= "radio"
@@ -178,11 +180,11 @@ export default function CreateActivity(){
               name= "difficulty"
               onChange={(e)=> handleChange(e)}
               />5|
-              {errors.difficulty && (<p>{errors.difficulty}</p>)}
+              {errors.difficulty && (<p className='p'>{errors.difficulty}</p>)}
               </div>
 
-              <div>
-              <label>Span:</label>
+              <div className='fields'>
+              <label>Span: </label>
               <input 
               type= "text"
               value= {input.span}
@@ -190,10 +192,10 @@ export default function CreateActivity(){
               onChange={(e)=> handleChange(e)}
               placeholder="Time in hours... eg: 2 hr"
               />
-              {errors.span && (<p>{errors.span}</p>)}
+              {errors.span && (<p className='p'>{errors.span}</p>)}
               </div>
 
-              <div>
+              <div className='fields'>
               <label>Season:</label>
               <select onChange={(e)=> handleCheck(e)}>
               <option hidden>Select</option>
@@ -202,10 +204,10 @@ export default function CreateActivity(){
               <option value= "winter">Winter</option>
               <option value= "spring">Spring</option>
               </select>
-              {errors.season && (<p>{errors.season}</p>)}
+              {errors.season && (<p className='p'>{errors.season}</p>)}
               </div>
 
-              <div>
+              <div className='fields'>
               <label>Countries: </label> 
               <select onChange={(e)=> handleSelect(e)}>
               <option hidden>Select</option>
@@ -216,26 +218,29 @@ export default function CreateActivity(){
                })
               }
               </select>
-              {errors.countries && (<p>{errors.countries}</p>)}
+              {errors.countries && (<p className='p'>{errors.countries}</p>)}
               </div>
 
+              <div className='countries'>
               {input.countries?.map(el => {
                 return (
-                    <div key={el}>
-                    <h4>{el}</h4>
+                    <div className='country' key={el}>
+                    <p className='pais'>{el}</p>
                     <button onClick={() => handleDelete(el)}>x</button>
                     </div>
                 )
                })
               }
+              </div>
 
-              <div>
+              <div className='fields'>
               <button type='submit' disabled={errors.name || errors.difficulty || errors.span || errors.season || errors.countries ? true : false}>Create</button>
               </div>
 
             </form>
+          </div>
 
-            <div><Link to='/home'>❮❮ Back</Link></div>
+            <div><Link className='back' to='/home'>❮❮ Back</Link></div>
 
         </div>        
     );

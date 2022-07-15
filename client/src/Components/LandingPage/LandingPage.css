@@ -1,22 +1,16 @@
 .landing{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    /*background-image: url(../../Images/PImg2.jpg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100vh;
-    background-attachment: fixed;
-    background-size: cover;*/
-    
+    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #0d0000;
-    
 }
 
-.landing::after{
+/*.landing::after{
   content: "";
-  background: url(../../Images/PImg23.jpeg);
+  background: url("../../Images/PImg24.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   opacity: 0.98;
   top: 0;
   left: 0;
@@ -24,21 +18,14 @@
   right: 0;
   position: absolute;
   z-index: -1;   
-}
-
-/*.img{
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100vh;
-    background-attachment: fixed;
-    background-size: cover;
-
 }*/
 
 .landingtitle{
+    margin-bottom: 10vh;
     font-size: 70px;
+    color: #A6635D;
+    text-shadow:2px 2px 2px #F2E0D0;
     text-align: center;
-    text-shadow:2px 2px 2px #D96704;
 }
 
 .landingbutton{
@@ -46,14 +33,14 @@
     font-size: large;
     text-align: center;
     padding: 12px;
-    background-color: #0d0000;
-    color: #D96704;
-    border: none;
-    border-radius: 10%;
+    background-color: #A6635D;
+    color: #e0d0c1;
+    border: 0.5px solid #e0d0c1;
+    border-radius: 5%;
 }
 
 .landingbutton:hover{
     padding: 20px;
-    box-shadow: 5px 5px 5px #D96704;
-    opacity: 0.85;
+    box-shadow: 3px 3px 3px #e0d0c1;
+    opacity: 0.8;
 }

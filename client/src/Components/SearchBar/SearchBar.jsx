@@ -5,7 +5,7 @@ import { getCountryByName } from "../../Redux/actions/index.js";
 import "./SearchBar.css";
 
 
-export default function SearchBar(){
+export default function SearchBar({ setter }){
     const dispatch = useDispatch();
     const [name, setName] = useState("");
 
@@ -18,6 +18,7 @@ export default function SearchBar(){
 
     function handleSubmit(e){
         e.preventDefault();
+        setter();
         if(!name){
             alert("Please, type a country name")
 

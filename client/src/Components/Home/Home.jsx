@@ -45,10 +45,26 @@ export default function Home(){
         }*/
     }
 
+    const paginas = Math.ceil(allCountries.length/countryPerPage)
+    const next = () => {
+        if(currentPage !== paginas){
+            setCurrentPage(currentPage + 1)
+        }
+    }
+    const prev = () => {
+        if(currentPage !== 1){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
     useEffect(() => {
         dispatch(getCountry());
         dispatch(getActivity());
     }, [dispatch])
+
+    const setter= function searchBar(){
+        setCurrentPage(1);
+    }
 
     function handleClick(e) {
         e.preventDefault();
@@ -88,36 +104,33 @@ export default function Home(){
 
 
     return(
-        <div>
-            <div>
-              <SearchBar/>
-            </div>
-
-            
         <div className="container">
+            <div className="searchbar">
+              <SearchBar setter={setter}/>
+            </div>
 
             <div className="allfilters">
                 <div >
                     <h3 className="searchby">Search by:</h3>
                 </div>
                 <div>
-                    <select onChange = {e => handleSortCountry(e)}>
+                    <select className="filters" onChange = {e => handleSortCountry(e)}>
                         <option>Sort by alphabet</option>
                         <option value= "asc">A-Z</option>
                         <option value= "desc">Z-A</option>
                     </select>
                 </div>
 
-                <div className="filters">
-                    <select onChange={e => handleSortPopulation(e)}>
+                <div >
+                    <select className="filters" onChange={e => handleSortPopulation(e)}>
                      <option>Sort by population</option>
                      <option value='low to high'>smallest to largest population</option>
                      <option value='high to low'>largest to smallest population</option>
                     </select>
                 </div>
 
-                <div className="filters">
-                    <select onChange={e => handleFilterByContinent(e)}>
+                <div >
+                    <select className="filters" onChange={e => handleFilterByContinent(e)}>
                      <option value='All'>Filter by continent</option>
                      <option value='Africa'>Africa</option>
                      <option value='Americas'>America</option>
@@ -128,11 +141,11 @@ export default function Home(){
                     </select>
                 </div>
 
-                <div className="filters">
+                <div >
                  {
                  activityName.length === 0 ?
                     <p className="p">No activities created</p>
-                  : <select onChange={e => handleCountryByActivity(e)}>
+                  : <select className="filters" onChange={e => handleCountryByActivity(e)}>
                     <option value='All'>Filter by activities</option>
                   {activityName?.map(e => {
                     return (
@@ -172,12 +185,12 @@ export default function Home(){
             </div>
 
             <Pages
+            next = {next}
+            prev = {prev}
             countryPerPage={countryPerPage}
             allCountries={allCountries.length}
             paging={paging}
             />
-            
-        </div>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React from "react";
 import "./Pages.css";
 
 
-export default function Pages({countryPerPage, allCountries, paging}) {
+export default function Pages({countryPerPage, allCountries, paging, next, prev}) {
     const pageNumbers = [];
 
     for(let i=1; i <= Math.ceil(allCountries/countryPerPage); i++){
@@ -11,7 +11,7 @@ export default function Pages({countryPerPage, allCountries, paging}) {
 
     return(
         <nav >
-            <ul className="ul">
+            {/*<ul className="ul">
                 {pageNumbers &&
                   pageNumbers.map(num => {
                     return( <button className="pagingbutton"
@@ -21,7 +21,12 @@ export default function Pages({countryPerPage, allCountries, paging}) {
                   })
                 }
 
-            </ul>
+            </ul>*/}
+
+            <button onClick={prev}>prev</button>
+            <button onClick={next}>next</button>
         </nav>
+
+        
     )
 }

@@ -1,15 +1,26 @@
 .card{
+    background-color: #e0d0c1;
     border-radius: 10px; 
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     display: flex;
-    position: relative;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    /*position: relative;
+    flex-wrap: wrap;*/
     padding: 1vw 1vw;
     margin-bottom: 1vw;
     margin-top: 1vw;
     /*width: 20vw;*/
     width: 15vw;
     height: 18vw;
+    opacity: 0.8;
+}
+
+.card:hover{
+    opacity: 1;
+    width: 17vw;
+    height: 20vw;
+    box-shadow: 10px 10px 10px #A6635D;
 }
 
 .img{

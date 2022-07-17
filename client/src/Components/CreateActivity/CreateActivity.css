@@ -7,11 +7,20 @@
 
 .formcontainer{
     width: 450px;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: none;
     border-radius: 10px;
+    background-color: #F2E0D0;
+    box-shadow: 5px 5px 5px #A6635D;
+    opacity: 0.9;
+}
+
+.title{
+    font-size: xx-large;
+    color: #1de9b6;
 }
 
 .p{
@@ -22,10 +31,11 @@
 
 .fields{
    text-align: center;
-   margin: 20px;
+   margin: 25px;
 }
 
 .back{
+    font-size: x-large;
     color: black;
     text-decoration: none;
 }
@@ -49,5 +59,24 @@
 .pais{
     margin: 2px;
     font-size: medium;
+}
+
+.inputs{
+    background-color: #F2E0D0;
+}
+
+.create{
+    padding: 5px;
+    font-size: medium;
+    color: black;
+    background-color: #A6635D;
+    border: 1px solid black;
+    border-radius: 10%;
+}
+
+.create:hover{
+    padding: 10px;
+    background-color: #F2E0D0;
+
 }
 

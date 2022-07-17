@@ -111,7 +111,7 @@ export default function Home(){
 
             <div className="allfilters">
                 <div >
-                    <h3 className="searchby">Search by:</h3>
+                    <p className="searchby">Sort & filter by:</p>
                 </div>
                 <div>
                     <select className="filters" onChange = {e => handleSortCountry(e)}>
@@ -144,7 +144,7 @@ export default function Home(){
                 <div >
                  {
                  activityName.length === 0 ?
-                    <p className="p">No activities created</p>
+                    <p className="noact">No activities created</p>
                   : <select className="filters" onChange={e => handleCountryByActivity(e)}>
                     <option value='All'>Filter by activities</option>
                   {activityName?.map(e => {

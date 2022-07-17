@@ -138,7 +138,7 @@ export default function CreateActivity(){
 
     return (
         <div className='container'>
-            <h2>Create Touristic Activity</h2>
+            <h2 className='title'>Create Touristic Activity</h2>
 
           <div className='formcontainer'>
 
@@ -146,7 +146,7 @@ export default function CreateActivity(){
 
               <div className='fields'>
                <label>Activity name: </label>
-               <input 
+               <input className='inputs'
                type= "text"
                value= {input.name}
                name= "name"
@@ -157,31 +157,31 @@ export default function CreateActivity(){
 
               <div className='fields'>
               <label>Difficulty: </label>
-              |<input 
+              |<input className='inputs'
               type= "radio"
               value= "1"
               name= "difficulty"
               onChange={(e)=> handleChange(e)}
               />1|
-              |<input 
+              |<input className='inputs'
               type= "radio"
               value= "2"
               name= "difficulty"
               onChange={(e)=> handleChange(e)}
               />2|
-              |<input 
+              |<input className='inputs'
               type= "radio"
               value= "3"
               name= "difficulty"
               onChange={(e)=> handleChange(e)}
               />3|
-              |<input 
+              |<input className='inputs'
               type= "radio"
               value= "4"
               name= "difficulty"
               onChange={(e)=> handleChange(e)}
               />4|
-              |<input 
+              |<input className='inputs'
               type= "radio"
               value= "5"
               name= "difficulty"
@@ -192,7 +192,7 @@ export default function CreateActivity(){
 
               <div className='fields'>
               <label>Span: </label>
-              <input 
+              <input className='inputs'
               type= "text"
               value= {input.span}
               name= "span"
@@ -204,7 +204,7 @@ export default function CreateActivity(){
 
               <div className='fields'>
               <label>Season:</label>
-              <select onChange={(e)=> handleCheck(e)}>
+              <select className='inputs' onChange={(e)=> handleCheck(e)}>
               <option hidden>Select</option>
               <option value= "summer">Summer</option>
               <option value= "autumn">Autumn</option>
@@ -216,7 +216,7 @@ export default function CreateActivity(){
 
               <div className='fields'>
               <label>Countries: </label> 
-              <select onChange={(e)=> handleSelect(e)}>
+              <select className='inputs' onChange={(e)=> handleSelect(e)}>
               <option hidden>Select</option>
               {onlyCountries?.map(c => {
                 return (
@@ -241,13 +241,13 @@ export default function CreateActivity(){
               </div>
 
               <div className='fields'>
-              <button type='submit' disabled={errors.name || errors.difficulty || errors.span || errors.season || errors.countries ? true : false}>Create</button>
+              <button className='create' type='submit' disabled={errors.name || errors.difficulty || errors.span || errors.season || errors.countries ? true : false}>Create</button>
               </div>
 
             </form>
           </div>
 
-            <div><Link className='back' to='/home'>❮❮ Back</Link></div>
+            <div className='back'><Link className='back' to='/home'>❮❮ Back</Link></div>
 
         </div>        
     );

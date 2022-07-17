@@ -11,7 +11,7 @@ export default function Pages({countryPerPage, allCountries, paging, next, prev}
 
     return(
         <nav >
-            {/*<ul className="ul">
+            <ul className="ulpaging">
                 {pageNumbers &&
                   pageNumbers.map(num => {
                     return( <button className="pagingbutton"
@@ -21,10 +21,10 @@ export default function Pages({countryPerPage, allCountries, paging, next, prev}
                   })
                 }
 
-            </ul>*/}
+            </ul>
 
-            <button onClick={prev}>prev</button>
-            <button onClick={next}>next</button>
+            {/*<button onClick={prev}>Prev</button>
+            <button onClick={next}>next</button>*/}
         </nav>
 
         

@@ -1,8 +1,9 @@
-.container{
+.containercreateact{
+    margin-top: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
     font-size: large;
+    align-items: center;
 }
 
 .formcontainer{
@@ -14,11 +15,9 @@
     border: none;
     border-radius: 10px;
     background-color: #F2E0D0;
-    box-shadow: 5px 5px 5px #A6635D;
-    opacity: 0.9;
 }
 
-.title{
+.titlecreateact{
     font-size: xx-large;
     color: #1de9b6;
 }
@@ -34,11 +33,29 @@
    margin: 25px;
 }
 
-.back{
-    font-size: x-large;
+.backform{
+    margin-top: 0;
+    margin-bottom: 3vh;
+    width: 100vw;
+    display: flex;
+    justify-content:center;
+    background-color: #A6635D;
+    font-size: large;
+    opacity: 0.8;
+}
+
+.backlinkform{
+    margin: 1vh;
+    padding: 5px;
     color: black;
     text-decoration: none;
 }
+
+.backlinkform:hover{
+    background-color: #F2E0D0;
+    border-radius: 10%;
+}
+
 
 .country{
     width: 25%;
@@ -56,6 +73,20 @@
     justify-content: space-around;
 }
 
+.deletecountry{
+    border: none;
+    border-radius: 5%;
+    background-color: #A6635D;
+    opacity: 0.9;
+}
+
+.deletecountry:hover{
+    color: #A6635D;
+    background-color: black;
+    border: 1px solid #A6635D;
+    opacity: 0.7;
+}
+
 .pais{
     margin: 2px;
     font-size: medium;
@@ -70,13 +101,17 @@
     font-size: medium;
     color: black;
     background-color: #A6635D;
-    border: 1px solid black;
+    border: none;
     border-radius: 10%;
+    opacity: 0.9;
 }
 
 .create:hover{
     padding: 10px;
-    background-color: #F2E0D0;
+    color: #A6635D;
+    background-color: black;
+    border: 1px solid #A6635D;
+    opacity: 0.7;
 
 }
 

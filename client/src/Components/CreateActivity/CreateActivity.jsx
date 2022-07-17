@@ -137,8 +137,12 @@ export default function CreateActivity(){
     }
 
     return (
-        <div className='container'>
-            <h2 className='title'>Create Touristic Activity</h2>
+        <div className='containercreateact'>
+            <div className='backform'>
+                <Link className='backlinkform' to='/home'>❮❮ Back</Link>
+            </div>
+
+            <h2 className='titlecreateact'>Create Touristic Activity</h2>
 
           <div className='formcontainer'>
 
@@ -233,7 +237,7 @@ export default function CreateActivity(){
                 return (
                     <div className='country' key={el}>
                     <p className='pais'>{el}</p>
-                    <button onClick={() => handleDelete(el)}>x</button>
+                    <button className='deletecountry' onClick={() => handleDelete(el)}>x</button>
                     </div>
                 )
                })
@@ -246,8 +250,6 @@ export default function CreateActivity(){
 
             </form>
           </div>
-
-            <div className='back'><Link className='back' to='/home'>❮❮ Back</Link></div>
 
         </div>        
     );

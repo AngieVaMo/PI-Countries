@@ -24,7 +24,7 @@
     margin-bottom: 10vh;
     font-size: 70px;
     color: #A6635D;
-    text-shadow:2px 2px 2px #F2E0D0;
+    text-shadow:2px 2px 2px #e0d0c1;
     text-align: center;
 }
 
@@ -41,6 +41,6 @@
 
 .landingbutton:hover{
     padding: 20px;
-    box-shadow: 3px 3px 3px #e0d0c1;
+    box-shadow: 5px 5px 5px #1de9b6;
     opacity: 0.8;
 }

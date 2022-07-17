@@ -162,7 +162,7 @@ export default function Home(){
                 
             </div>
 
-            <div className="createact">
+            <div className="divcreateact">
                 <Link className="createact" to="/createActivity">
                  <p>Create activity</p>
                 </Link>
@@ -184,6 +184,7 @@ export default function Home(){
                 }
             </div>
 
+            <div className="paginghome">
             <Pages
             next = {next}
             prev = {prev}
@@ -191,6 +192,8 @@ export default function Home(){
             allCountries={allCountries.length}
             paging={paging}
             />
+            </div>
+
         </div>
     )
 }

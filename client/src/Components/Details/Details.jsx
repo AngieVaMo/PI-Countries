@@ -16,10 +16,14 @@ export default function Details(){
     },[])
 
     return(
-        <div className='container'>
+        <div >
+            <div className='backdetails'>
+                <Link className='backlink' to="/home">❮❮ Back</Link>
+            </div>
+
             {
               countryDetail?.hasOwnProperty("name") &&
-              <div>
+              <div className='containerdetail'>
                 <div className='carddetail'>
                   <img src={countryDetail.flag} alt= "Bandera"/>
                   <h2 className='h2'><i>{countryDetail.name}</i></h2>
@@ -28,20 +32,24 @@ export default function Details(){
                   <h4 className='h'><i>Subregion:</i> {countryDetail.subregion}</h4>
                   <h4 className='h'><i>Area:</i> {parseInt(countryDetail.area).toLocaleString('de-DE')} Km2</h4>
                   <h4 className='h'><i>Population:</i> {countryDetail.population.toLocaleString('de-DE')}</h4>
-              </div>
-              <div>
-                 <h2 className='title'><i>Touristic Activities:</i></h2>
+               </div>
+              <div className='allact'>
+                  <h2 className='titledetail'>Touristic Activities:</h2> 
                  {
                     countryDetail.Activities?.length === 0 ?
-                    <h2>¡It has no activities!</h2> :
+                    <h2 className='titledetail'>¡It has no activities!</h2> :
+                    
                     countryDetail.Activities?.map(act => (
-                        <p className='cardactivities' key={act.id}>
+                        
+                        <div className='cardactivities'> 
+                        <ul key={act.id}>
                           <li>Activity: <strong>{act.name}</strong></li>
                           <li>Difficulty: {act.difficulty}</li>
                           <li>Span: {act.span}</li>
                           <li>Season: {act.season}</li>
                           <br/>
-                        </p>
+                        </ul>
+                        </div>
                     )) 
                     
                  }
@@ -49,10 +57,6 @@ export default function Details(){
               </div> 
               //: <p>Details not found</p>
             }
-
-            <div>
-                <Link className='back' to="/home">❮❮ Back</Link>
-            </div>
 
         </div>
     )

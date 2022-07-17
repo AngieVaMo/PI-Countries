@@ -1,25 +1,19 @@
 
-/*.container{
-    
-}*/
-
 .searchbar{
-    padding: 1vh;
-    background-color: #1de9b6;
+    padding:0;
+    /*background-color: #A6635D;*/
     width: 100%;
     display:flex;
     justify-content: end;
-    margin-bottom: 20px;
+    margin-bottom: 5vh;
     opacity: 0.8;
 }
-
 
 .allfilters{
     width: 80vw;
     margin: 20px 10vw;
     display: flex;
     justify-content: space-around;
-    
 }
 
 .filters{
@@ -38,19 +32,21 @@
     color: #1de9b6;
 }
 
-.createact{
+.divcreateact{
+    width: 100vw;
     display: flex;
     justify-content: center;
+    font-size: x-large;   
+}
+
+.createact{
     text-decoration: none;
-    font-size: x-large;
     color: #1de9b6;
 }
 
 .createact:hover{
-    font-size: xx-large;
+    text-decoration: underline;
 }
-
-
 
 .cards{
     display: flex;
@@ -81,5 +77,14 @@
     background-color: #1de9b6;
     color:black;
     box-shadow: 3px 3px 3px #108164;
+}
+
+.paginghome{
+    background-color: #A6635D;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    opacity: 0.8;
 }
 

@@ -24,6 +24,7 @@ export default function SearchBar({ setter }){
 
         } else{
             dispatch(getCountryByName(name));
+            setName("");
             
         }
     }

@@ -104,7 +104,7 @@ export default function Home(){
 
 
     return(
-        <div className="container">
+        <div className="containerhome">
             <div className="searchbar">
               <SearchBar setter={setter}/>
             </div>
@@ -185,13 +185,13 @@ export default function Home(){
             </div>
 
             <div className="paginghome">
-            <Pages
-            next = {next}
-            prev = {prev}
-            countryPerPage={countryPerPage}
-            allCountries={allCountries.length}
-            paging={paging}
-            />
+              <Pages
+                 next = {next}
+                 prev = {prev}
+                 countryPerPage={countryPerPage}
+                 allCountries={allCountries.length}
+                 paging={paging}
+                />
             </div>
 
         </div>

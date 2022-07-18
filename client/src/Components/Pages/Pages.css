@@ -4,7 +4,10 @@
 }
 
 .pagingbutton{
-    background-color: #A6635D;
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    background-color: #1de9b6;
     border: none;
     border-radius: 10%;
     opacity: 1;
@@ -12,6 +15,9 @@
 
 .pagingbutton:hover{
     background-color: #F2E0D0;
-    padding: 5px;
-    opacity: 0.8;
+    border: none;
+    box-shadow: 3px 3px 3px 3px #59371C;
+    width: 30px;
+    height: 30px;
+    opacity: 0.9;
 }

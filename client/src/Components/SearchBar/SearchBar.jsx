@@ -9,8 +9,6 @@ export default function SearchBar({ setter }){
     const dispatch = useDispatch();
     const [name, setName] = useState("");
 
-
-
     function handleChange(e){
         e.preventDefault();
         setName(e.target.value)
@@ -24,8 +22,7 @@ export default function SearchBar({ setter }){
 
         } else{
             dispatch(getCountryByName(name));
-            setName("");
-            
+            setName("");  
         }
     }
 

@@ -37,24 +37,6 @@ export default function Home(){
 
     function paging(pageNum){
         setCurrentPage(pageNum);
-        /*if(pageNum === 1){
-            setCountryPerPage(9);
-            
-        } else{
-            setCountryPerPage(10);
-        }*/
-    }
-
-    const paginas = Math.ceil(allCountries.length/countryPerPage)
-    const next = () => {
-        if(currentPage !== paginas){
-            setCurrentPage(currentPage + 1)
-        }
-    }
-    const prev = () => {
-        if(currentPage !== 1){
-            setCurrentPage(currentPage - 1)
-        }
     }
 
     useEffect(() => {
@@ -76,8 +58,7 @@ export default function Home(){
     function handleFilterByContinent(e) {
         e.preventDefault();
         dispatch(filterByContinent(e.target.value));
-        setCurrentPage(1);
-        
+        setCurrentPage(1);    
     }
 
     function handleSortCountry(e) {
@@ -186,8 +167,6 @@ export default function Home(){
 
             <div className="paginghome">
               <Pages
-                 next = {next}
-                 prev = {prev}
                  countryPerPage={countryPerPage}
                  allCountries={allCountries.length}
                  paging={paging}

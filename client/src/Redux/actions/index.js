@@ -12,12 +12,13 @@ export const COUNTRY_BY_ACTIVITY = 'COUNTRY_BY_ACTIVITY';
 export function getCountry(){
     return async function(dispatch) {
         try {
-            let country = await axios.get("http://localhost:3001/country");
+            let country= await axios.get("http://localhost:3001/country");
 
-        return dispatch({
-            type: "GET_COUNTRY",
-            payload: country.data
-        })
+            return dispatch({
+                type: "GET_COUNTRY",
+                payload: country.data
+            })
+        
         } catch (error) {
             console.log(error)
         }
@@ -28,9 +29,8 @@ export function getCountryByName(name){
     return async function(dispatch) {
         try {
             let countryByName = await axios.get(`http://localhost:3001/country?name=${name}`);
-            console.log(countryByName, "countrybyName")
 
-             dispatch({
+            return dispatch({
               type: "GET_COUNTRY_BY_NAME",
               payload: countryByName.data
             })
@@ -46,7 +46,6 @@ export function getDetails(id) {
     return async function(dispatch) {
         try {
             let details = await axios.get(`http://localhost:3001/country/${id}`)
-            console.log(details, "detalles")
 
             return dispatch({
                 type: "GET_DETAILS",
@@ -101,7 +100,6 @@ export function filterByContinent(payload){
         try {
             let activity = await axios.post("http://localhost:3001/activity", payload)
             
-
             return dispatch({
                 type: "GET_ACTIVITY",
                 payload: activity.data

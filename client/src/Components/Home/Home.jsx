@@ -65,21 +65,20 @@ export default function Home(){
         e.preventDefault();
         dispatch(orderByCountry(e.target.value));
         setCurrentPage(1);
-        setInOrder(`Ordered by the alphabeth ${e.target.value}`);
+        setInOrder(`Sort by alphabeth ${e.target.value}`);
     }
 
     function handleSortPopulation(e) {
         e.preventDefault();
         dispatch(orderByPopulation(e.target.value));
         setCurrentPage(1);
-        setInOrder(`Ordered by population ${e.target.value}`)
+        setInOrder(`Sort by population ${e.target.value}`)
     }
 
     function handleCountryByActivity(e) {
         e.preventDefault();
         dispatch(countryByActivity(e.target.value))
         setCurrentPage(1);
-        setInOrder(`Ordered by activity ${e.target.value}`)
     }
 
 

@@ -22,25 +22,10 @@ let downloadApi = async () => {
           }
         })
 
-        await Country.bulkCreate(apiInfo);
-        res.send("Countries loaded in db succesfully")
-    
-        /*if(!validation){
-          await apiInfo.map(async co => {
-            Country.create({
-              id: co.id,
-              name: co.name,
-              flag: co.flag,
-              continent: co.continent,
-              capital: co.capital,
-              subregion: co.subregion,
-              area: co.area,
-              population: co.population,
-              //coatOfArms: co.coatOfArms
-            })
-          })
-          console.log('Countries saved')
-        } */
+        if(!validation){
+          await Country.bulkCreate(apiInfo);
+          console.log("Countries loaded in db succesfully")
+        }
     
     } catch (error) {
         console.log(error);

@@ -23,7 +23,7 @@ const { downloadApi } = require("./src/downloadApi/downloadApi.js")
 
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async() => {
+conn.sync({ force: false }).then(async() => {
   try {
     await downloadApi();
     console.log("Countries loaded");

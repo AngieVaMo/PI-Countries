@@ -12,7 +12,7 @@ router.get('/', async (req, res, next)=> {
             order: [['name', 'ASC']]
         });
 
-        res.status(200).send(allCountries);
+        res.status(200).json(allCountries);
 
     } catch(error){
         next(error);

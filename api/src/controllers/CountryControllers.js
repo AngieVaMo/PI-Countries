@@ -13,18 +13,18 @@ let getAllCountries = async (req, res, next) => {
                             [Op.iLike]: `%${name}%`,
                         }
                     },
-                    include: Activity,
-                    
+                    include: Activity,  
                 })
-                
-                res.json(countriesByName );
+                res.json(countriesByName);
+
             } else{
                 let countries = await Country.findAll({
                     include: {
                         model: Activity
                     }
                 });
-                res.json(countries ); 
+                res.json(countries );
+                
             }
         } catch (error) {
             next(error);

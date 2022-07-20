@@ -51,5 +51,5 @@ let getCountryById = async (req, res, next) => {
 
 module.exports = {
     getAllCountries,
-    getCountryById
+    getCountryById,
 }
